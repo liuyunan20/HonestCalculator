@@ -17,5 +17,21 @@ while bad_input:
             print("Enter an equation")
             calc = input().split()
             bad_input = True
-        else:
+        elif calc[1] == "+":
+            result = x + y
             bad_input = False
+        elif calc[1] == "-":
+            result = x - y
+            bad_input = False
+        elif calc[1] == "*":
+            result = x * y
+            bad_input = False
+        elif calc[1] == "/" and y != 0:
+            result = x / y
+            bad_input = False
+        else:
+            print("Yeah... division by zero. Smart move...")
+            print("Enter an equation")
+            calc = input().split()
+            bad_input = True
+print(result)
