@@ -1,4 +1,19 @@
 # write your code here
+msg_0 = "Enter an equation"
+msg_1 = "Do you even know what numbers are? Stay focused!"
+msg_2 = "Yes ... an interesting math operation. You've slept through all classes, haven't you?"
+msg_3 = "Yeah... division by zero. Smart move..."
+msg_4 = "Do you want to store the result? (y / n):"
+msg_5 = "Do you want to continue calculations? (y / n):"
+msg_6 = " ... lazy"
+msg_7 = " ... very lazy"
+msg_8 = " ... very, very lazy"
+msg_9 = "You are"
+msg_10 = "Are you sure? It is only one digit! (y / n)"
+msg_11 = "Don't be silly! It's just one number! Add to the memory? (y / n)"
+msg_12 = "Last chance! Do you really want to embarrass yourself? (y / n)"
+msg_ = [msg_0, msg_1, msg_2, msg_3, msg_4, msg_5, msg_6, msg_7, msg_8, msg_9, msg_10, msg_11, msg_12]
+
 def check_cal(calc):
     global memory
     global result
@@ -56,10 +71,6 @@ def is_one_digit(v):
 
 
 def check(v1, v2, v3):
-    msg_6 = " ... lazy"
-    msg_7 = " ... very lazy"
-    msg_8 = " ... very, very lazy"
-    msg_9 = "You are"
     msg = ""
     if is_one_digit(v1) and is_one_digit(v2):
         msg += msg_6
@@ -73,14 +84,26 @@ def check(v1, v2, v3):
 
 
 def store_result():
+    global memory
     print("Do you want to store the result? (y / n):")
     s_answer = input()
     while s_answer not in ["y", "n"]:
         print("Do you want to store the result? (y / n):")
         s_answer = input()
     if s_answer == "y":
-        global memory
-        memory = result
+        if is_one_digit(result):
+            msg_index = 10
+            while msg_index < 13 and s_answer in ["y", "n"]:
+                print(msg_[msg_index])
+                s_answer = input()
+                if s_answer == "y":
+                    msg_index += 1
+                elif s_answer == "n":
+                    break
+            if s_answer == "y":
+                memory = result
+        else:
+            memory = result
 
 
 memory = 0
